@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qatar Charity Pediatric Cardiology Mission</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8a1538; /* Qatar Charity primary color */
+      --secondary: #5e8c31; /* Complementary green */
+      --accent: #0b6efd;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --gray: #6c757d;
+      --border: #dee2e6;
+      --success: #28a745;
+      --danger: #dc3545;
+      --warning: #ffc107;
+      --info: #17a2b8;
+      --section-highlight: #e8f4f8;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f7f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding: 15px 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .header h1 {
+      margin: 0 0 5px 0;
+      font-size: 28px;
+      color: var(--primary);
+    }
+    
+    .header-subtitle {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      font-size: 14px;
+      color: var(--gray);
+      margin-top: 10px;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .card-title {
+      font-size: 18px;
+      color: var(--primary);
+      margin: 0 0 15px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--light);
+    }
+    
+    .row {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+      width: 100%;
+    }
+    
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    
+    input[type=text], input[type=number], input[type=date], select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    
+    input[type=text]:focus, input[type=number]:focus, input[type=date]:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(138, 21, 56, 0.1);
+    }
+    
+    .inline {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .inline label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 0;
+      font-weight: normal;
+      white-space: nowrap;
+    }
+    
+    .muted {
+      font-size: 13px;
+      color: var(--gray);
+    }
+    
+    /* Button Styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #75102f;
+    }
+    
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: #4e7629;
+    }
+    
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+    
+    .btn-success:hover {
+      background: #218838;
+    }
+    
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background: #c82333;
+    }
+    
+    .btn-info {
+      background: var(--info);
+      color: white;
+    }
+    
+    .btn-info:hover {
+      background: #138496;
+    }
+    
+    .btn-warning {
+      background: var(--warning);
+      color: var(--dark);
+    }
+    
+    .btn-warning:hover {
+      background: #e0a800;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--dark);
+    }
+    
+    .btn-outline:hover {
+      background: var(--light);
+    }
+    
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    
+    /* Device blocks */
+    .device-block {
+      border: 1px dashed var(--border);
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      background: var(--light);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .stats {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    
+    .stat-card {
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: 8px;
+      min-width: 180px;
+      background: white;
+      text-align: center;
+    }
+    
+    .stat-card h4 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      color: var(--primary);
+    }
+    
+    .stat-card .number {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    
+    table, th, td {
+      border: 1px solid var(--border);
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: var(--primary);
+      color: white;
+      font-weight: 500;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    
+    tr:hover {
+      background-color: #e9ecef;
+    }
+    
+    .small {
+      font-size: 13px;
+    }
+    
+    .flex-1 {
+      flex: 1;
+    }
+    
+    .center {
+      text-align: center;
+    }
+    
+    hr {
+      border: none;
+      height: 1px;
+      background-color: var(--border);
+      margin: 20px 0;
+    }
+    
+    /* Section header styles */
+    .section-header {
+      background-color: var(--section-highlight);
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin: 20px 0 15px 0;
+      font-weight: bold;
+      color: var(--primary);
+      border-left: 4px solid var(--primary);
+    }
+    
+    /* Sub options that appear when checkbox is checked */
+    .sub-options {
+      margin: 10px 0 10px 20px;
+      padding: 10px;
+      border-left: 3px solid var(--secondary);
+      background-color: #f9f9f9;
+      border-radius: 0 5px 5px 0;
+      display: none;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-subtitle {
+        flex-direction: column;
+        gap: 5px;
+      }
+      
+      .row {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    
+    /* Custom checkbox and radio styles */
+    input[type="checkbox"], input[type="radio"] {
+      width: auto;
+      margin-right: 5px;
+    }
+    
+    /* Section styling */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 25px 0 15px 0;
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .section-title i {
+      font-size: 20px;
+    }
+    
+    /* Search results */
+    .search-results {
+      margin-top: 10px;
+      padding: 10px;
+      background: #e9f7ef;
+      border-radius: 6px;
+      border-left: 4px solid var(--success);
+    }
+    
+    .age-display {
+      background: #f0f8ff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 5px;
+      border: 1px dashed #b8daff;
+    }
+    
+    .form-field {
+      flex: 1;
+      min-width: 120px;
+    }
+    
+    .checkbox-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .checkbox-row label {
+      min-width: 120px;
+    }
+    
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    
+    .stats-table th, .stats-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    .stats-table th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Qatar Charity Pediatric Cardiology Mission</h1>
+      <div class="header-subtitle">
+        <div><i class="fas fa-globe"></i> Country: <select id="countrySelect" class="btn-outline"></select></div>
+        <div><i class="fas fa-calendar"></i> Year: <select id="yearSelect" class="btn-outline"></select></div>
+      </div>
+      <div style="margin-top: 15px;">
+        <button id="btnNew" class="btn btn-success"><i class="fas fa-plus"></i> New Entry</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title"><i class="fas fa-user"></i> Patient Information</h2>
+      <div class="form-group">
+        <div class="row">
+          <div class="form-field">
+            <label>MRN</label>
+            <input type="text" id="mrn" placeholder="MRN">
+          </div>
+          <div class="form-field" style="flex: 2;">
+            <label>Name</label>
+            <input type="text" id="name" placeholder="Name">
+          </div>
+          <div class="form-field">
+            <label>Date of Birth</label>
+            <input type="date" id="dob">
+          </div>
+          <div class="form-field">
+            <label>Age</label>
+            <div class="age-display" id="ageDisplay">Years: 0, Months: 0, Days: 0</div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-field">
+            <label>Gender</label>
+            <select id="gender">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Height (cm)</label>
+            <input type="number" id="height" placeholder="Height (cm)">
+          </div>
+          <div class="form-field">
+            <label>Weight (kg)</label>
+            <input type="number" id="weight" placeholder="Weight (kg)">
+          </div>
+          <div class="form-field">
+            <label>BSA</label>
+            <input type="text" id="bsa" placeholder="BSA" readonly>
+          </div>
+          <div class="form-field">
+            <label>BMI</label>
+            <input type="text" id="bmi" placeholder="BMI" readonly>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-stethoscope"></i> Diagnosis
+      </div>
+      <div class="form-group">
+        <div class="checkbox-row" id="diagnosis"></div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-procedures"></i> Procedure Performed
+      </div>
+      <div class="form-group">
+        <div class="checkbox-row" id="procedures"></div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-tools"></i> Device Used (you may select multiple)
+      </div>
+      <div class="form-group">
+        <div id="devicesList"></div>
+        <button id="addDevice" class="btn btn-outline btn-sm"><i class="fas fa-plus"></i> Add Device</button>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-truck-loading"></i> Delivery System (select multiple; size linked per system)
+      </div>
+      <div class="form-group">
+        <div id="deliveryList"></div>
+        <button id="addDelivery" class="btn btn-outline btn-sm"><i class="fas fa-plus"></i> Add Delivery System</button>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-box-open"></i> Other Materials / Kits
+      </div>
+      <div class="form-group">
+        <div class="checkbox-row">
+          <label class="inline"><input type="checkbox" id="lab1"> LAB1</label>
+          <label class="inline"><input type="checkbox" id="lab2"> LAB2</label>
+          <label class="inline"><input type="checkbox" id="lab3"> LAB3</label>
+          <label class="inline"><input type="checkbox" id="lab4"> LAB4</label>
+          <label class="inline"><input type="checkbox" id="lab5"> LAB5</label>
+          <label class="inline"><input type="checkbox" id="lab6"> LAB6</label>
+          <label class="inline"><input type="checkbox" id="lab7"> LAB7</label>
+          <label class="inline"><input type="checkbox" id="lab8"> LAB8</label>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-user-md"></i> Operators
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="form-field">
+            <input type="text" id="op1" placeholder="Operator 1">
+          </div>
+          <div class="form-field">
+            <input type="text" id="op2" placeholder="Operator 2">
+          </div>
+          <div class="form-field">
+            <input type="text" id="op3" placeholder="Operator 3">
+          </div>
+          <div class="form-field">
+            <input type="text" id="op4" placeholder="Operator 4">
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-syringe"></i> Introducer Needle (tick to open free text)
+      </div>
+      <div class="form-group">
+        <div class="checkbox-row" id="introNeedleRow"></div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-code-branch"></i> Introducer Sheath
+      </div>
+      <div class="form-group">
+        <div class="checkbox-row" id="introSheathRow">
+          <label class="inline"><input type="checkbox" id="introSheathCheck"> Introducer Sheath Used</label>
+        </div>
+        <div id="introSheathOptions" class="sub-options">
+          <div class="checkbox-row">
+            <label class="inline"><input type="checkbox" value="4F 7CM"> 4F 7CM</label>
+            <label class="inline"><input type="checkbox" value="5F 7CM"> 5F 7CM</label>
+            <label class="inline"><input type="checkbox" value="6F 7CM"> 6F 7CM</label>
+            <label class="inline"><input type="checkbox" value="7F 7CM"> 7F 7CM</label>
+            <label class="inline"><input type="checkbox" value="4F 11CM"> 4F 11CM</label>
+            <label class="inline"><input type="checkbox" value="5F 11CM"> 5F 11CM</label>
+            <label class="inline"><input type="checkbox" value="6F 11CM"> 6F 11CM</label>
+            <label class="inline"><input type="checkbox" value="7F 11CM"> 7F 11CM</label>
+            <label class="inline"><input type="checkbox" value="8F 11CM"> 8F 11CM</label>
+            <label class="inline"><input type="checkbox" value="9F 11CM"> 9F 11CM</label>
+            <label class="inline"><input type="checkbox" value="10F 11CM"> 10F 11CM</label>
+            <label class="inline"><input type="checkbox" value="11F 11CM"> 11F 11CM</label>
+            <label class="inline"><input type="checkbox" value="12F 11CM"> 12F 11CM</label>
+            <label class="inline"><input type="checkbox" value="14F 75CM"> 14F 75CM</label>
+            <label class="inline"><input type="checkbox" value="Other"> Other</label>
+          </div>
+          <div id="introSheathOther" class="sub-options">
+            <input type="text" placeholder="Specify other introducer sheath">
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-code"></i> Wires
+      </div>
+      <div class="form-group">
+        <div class="checkbox-row">
+          <label class="inline"><input type="checkbox" id="ptcaWireCheck"> PTCA Wires</label>
+          <label class="inline"><input type="checkbox" id="copeMandrilCheck"> Cope Mandril Wires</label>
+          <label class="inline"><input type="checkbox" id="regularWireCheck"> Regular Wires</label>
+          <label class="inline"><input type="checkbox" id="stiffWireCheck"> Stiff Wires</label>
+          <label class="inline"><input type="checkbox" id="superStiffWireCheck"> Super Stiff Wires</label>
+        </div>
+        
+        <div id="ptcaWireOptions" class="sub-options">
+          <div class="checkbox-row">
+            <label class="inline"><input type="checkbox" value=".014x180cm"> .014x180cm</label>
+            <label class="inline"><input type="checkbox" value=".014x190cm"> .014x190cm</label>
+            <label class="inline"><input type="checkbox" value=".014x300cm"> .014x300cm</label>
+            <label class="inline"><input type="checkbox" value="Other"> Other</label>
+          </div>
+          <div id="ptcaWireOther" class="sub-options">
+            <input type="text" placeholder="Specify other PTCA wire">
+          </div>
+        </div>
+        
+        <div id="copeMandrilOptions" class="sub-options">
+          <div class="checkbox-row">
+            <label class="inline"><input type="checkbox" value="Cope Mandril .018x60cm"> Cope Mandril .018x60cm</label>
+            <label class="inline"><input type="checkbox" value="Other"> Other</label>
+          </div>
+          <div id="copeMandrilOther" class="sub-options">
+            <input type="text" placeholder="Specify other Cope Mandril wire">
+          </div>
+        </div>
+        
+        <div id="regularWireOptions" class="sub-options">
+          <div class="checkbox-row">
+            <label class="inline"><input type="checkbox" value=".018x150cm"> .018x150cm</label>
+            <label class="inline"><input type="checkbox" value=".018x180cm"> .018x180cm</label>
+            <label class="inline"><input type="checkbox" value=".018x260cm"> .018x260cm</label>
+            <label class="inline"><input type="checkbox" value=".025x150cm"> .025x150cm</label>
+            <label class="inline"><input type="checkbox" value=".025x180cm"> .025x180cm</label>
+            <label class="inline"><input type="checkbox" value=".025x260cm"> .025x260cm</label>
+            <label class="inline"><input type="checkbox" value=".032x150cm"> .032x150cm</label>
+            <label class="inline"><input type="checkbox" value=".032x180cm"> .032x180cm</label>
+            <label class="inline"><input type="checkbox" value=".032x260cm"> .032x260cm</label>
+            <label class="inline"><input type="checkbox" value=".035x150cm"> .035x150cm</label>
+            <label class="inline"><input type="checkbox" value=".035x180cm"> .035x180cm</label>
+            <label class="inline"><input type="checkbox" value=".035x260cm"> .035x260cm</label>
+            <label class="inline"><input type="checkbox" value="Other"> Other</label>
+          </div>
+          <div id="regularWireOther" class="sub-options">
+            <input type="text" placeholder="Specify other regular wire">
+          </div>
+        </div>
+        
+        <div id="stiftWireOptions" class="sub-options">
+          <div class="checkbox-row">
+            <label class="inline"><input type="checkbox" value=".025x150cm"> .025x150cm</label>
+            <label class="inline"><input type="checkbox" value=".025x180cm"> .025x180cm</label>
+            <label class="inline"><input type="checkbox" value=".025x260cm"> .025x260cm</label>
+            <label class="inline"><input type="checkbox" value=".032x150cm"> .032x150cm</label>
+            <label class="inline"><input type="checkbox" value=".032x180cm"> .032x180cm</label>
+            <label class="inline"><input type="checkbox" value=".032x260cm"> .032x260cm</label>
+            <label class="inline"><input type="checkbox" value=".035x150cm"> .035x150cm</label>
+            <label class="inline"><input type="checkbox" value=".035x180cm"> .035x180cm</label>
+            <label class="inline"><input type="checkbox" value=".035x260cm"> .035x260cm</label>
+            <label class="inline"><input type="checkbox" value="Other"> Other</label>
+          </div>
+          <div id="stiffWireOther" class="sub-options">
+            <input type="text" placeholder="Specify other stiff wire">
+          </div>
+        </div>
+        
+        <div id="superStiffWireOptions" class="sub-options">
+          <div class="checkbox-row">
+            <label class="inline"><input type="checkbox" value=".035x150cm"> .035x150cm</label>
+            <label class="inline"><input type="checkbox" value=".035x180cm"> .035x180cm</label>
+            <label class="inline"><input type="checkbox" value=".035x260cm"> .035x260cm</label>
+            <label class="inline"><input type="checkbox" value="Other"> Other</label>
+          </div>
+          <div id="superStiffWireOther" class="sub-options">
+            <input type="text" placeholder="Specify other super stiff wire">
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-tint"></i> Catheters / Balloon / Other
+      </div>
+      <div class="form-group">
+        <div class="checkbox-row">
+          <label class="inline"><input type="checkbox" id="catheterCheck"> Catheters/Balloon/Other Used</label>
+        </div>
+        <div id="catheterOptions" class="sub-options">
+          <div class="checkbox-row">
+            <label class="inline"><input type="checkbox" id="pigtailCheck"> Pigtail</label>
+            <label class="inline"><input type="checkbox" id="mpaCheck"> MPA</label>
+            <label class="inline"><input type="checkbox" id="jrCheck"> JR</label>
+            <label class="inline"><input type="checkbox" id="guidingCathCheck"> Guiding Catheter</label>
+            <label class="inline"><input type="checkbox" id="balloonWedgeCheck"> Balloon Wedge Pressure</label>
+            <label class="inline"><input type="checkbox" id="bermanAngioCheck"> Berman Angio</label>
+            <label class="inline"><input type="checkbox" value="Other"> Other</label>
+          </div>
+          
+          <div id="pigtailOptions" class="sub-options">
+            <div class="checkbox-row">
+              <label class="inline"><input type="checkbox" value="4F"> 4F</label>
+              <label class="inline"><input type="checkbox" value="5F"> 5F</label>
+              <label class="inline"><input type="checkbox" value="6F"> 6F</label>
+            </div>
+          </div>
+          
+          <div id="mpaOptions" class="sub-options">
+            <div class="checkbox-row">
+              <label class="inline"><input type="checkbox" value="4F"> 4F</label>
+              <label class="inline"><input type="checkbox" value="5F"> 5F</label>
+              <label class="inline"><input type="checkbox" value="6F"> 6F</label>
+            </div>
+          </div>
+          
+          <div id="jrOptions" class="sub-options">
+            <div class="checkbox-row">
+              <label class="inline"><input type="checkbox" value="4F"> 4F</label>
+              <label class="inline"><input type="checkbox" value="5F"> 5F</label>
+              <label class="inline"><input type="checkbox" value="6F"> 6F</label>
+            </div>
+          </div>
+          
+          <div id="guidingCathOptions" class="sub-options">
+            <input type="text" placeholder="Enter guiding catheter details">
+          </div>
+          
+          <div id="balloonWedgeOptions" class="sub-options">
+            <div class="checkbox-row">
+              <label class="inline"><input type="checkbox" value="5F"> 5F</label>
+              <label class="inline"><input type="checkbox" value="6F"> 6F</label>
+              <label class="inline"><input type="checkbox" value="7F"> 7F</label>
+            </div>
+          </div>
+          
+          <div id="bermanAngioOptions" class="sub-options">
+            <div class="checkbox-row">
+              <label class="inline"><input type="checkbox" value="5F"> 5F</label>
+              <label class="inline"><input type="checkbox" value="6F"> 6F</label>
+              <label class="inline"><input type="checkbox" value="7F"> 7F</label>
+            </div>
+          </div>
+          
+          <div id="catheterOther" class="sub-options">
+            <input type="text" placeholder="Specify other catheter/balloon">
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-compress-alt"></i> Snare
+      </div>
+      <div class="form-group">
+        <div class="checkbox-row">
+          <label class="inline"><input type="checkbox" id="snareChk"> Snare Used</label>
+        </div>
+        <div id="snareOptions" class="sub-options">
+          <div class="checkbox-row">
+            <label class="inline"><input type="checkbox" id="tripleLoopCheck"> Triple Loop</label>
+            <label class="inline"><input type="checkbox" id="gooseNeckCheck"> Goose Neck</label>
+          </div>
+          
+          <div id="tripleLoopOptions" class="sub-options">
+            <input type="text" placeholder="Enter triple loop snare size">
+          </div>
+          
+          <div id="gooseNeckOptions" class="sub-options">
+            <input type="text" placeholder="Enter goose neck snare size">
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-vial"></i> Additional Supplies
+      </div>
+      <div style="margin-top:10px" class="row">
+        <div class="form-field">
+          <label>Injector Syringe Quantity</label>
+          <select id="injQty">
+            <option value="0">0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>High Pressure Tubing Qty</label>
+          <select id="hpQty"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+        <div class="form-field">
+          <label>Contrast</label>
+          <input type="text" id="contrast" placeholder="contrast amount">
+        </div>
+        <div class="form-field">
+          <label>Angio Pack Qty</label>
+          <select id="angioQty"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+        <div class="form-field">
+          <label>Pacing Lead Qty</label>
+          <select id="pacingQty"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+        <div class="form-field">
+          <label>Indeflator Qty</label>
+          <select id="indefQty"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+        <div class="form-field">
+          <label>Pericardiocentesis Kit Qty</label>
+          <select id="periQty"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="saveBtn" class="btn btn-primary"><i class="fas fa-save"></i> Save Entry</button>
+        <button id="exportXLS" class="btn btn-success"><i class="fas fa-file-excel"></i> Export to Excel</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title"><i class="fas fa-database"></i> Saved Records</h2>
+      <div id="recordsTable"></div>
+      
+      <h2 class="card-title"><i class="fas fa-chart-bar"></i> Statistics</h2>
+      <div id="statsArea"></div>
+    </div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <script>
+    // --- Initial data and helpers ---
+    const countries = ['All Countries','Afghanistan','Albania','Algeria','Andorra','Angola','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahrain','Bangladesh','Belgium','Bhutan','Brazil','Canada','China','Denmark','Egypt','France','Germany','India','Jordan','Qatar','Saudi Arabia','United Kingdom','United States'];
+    const years = Array.from({length:10},(_,i)=>new Date().getFullYear()-5 + i);
+    const diagnosisOptions = ['PDA','ASD','VSD','PS','AS','AI','MS','TS','COA','MVP','RCC','SAM','Pericardial Effusion','LPA Stenosis','RPA Stenosis','Other'];
+    const procedureOptions = ['ECHO','RHC','LHC','PDA Closer','ASD Closer','VSD Closer','COA Stenting','COA Ballooning','Device Dislodgment','Device Retrieval','Device Slipping','Refer to Surgery','Observation','Coiling','Pulmonary Valvuloplasty','Aortic Valvuloplasty','Mitral Valvuloplasty','Permanent Pacemaker Insertion','Temporary Pacemaker Insertion','Cardioversion','ICD Implantation','CRT Implantation','Other'];
+    const deviceVendors = ['Amplatzer','MemoPart (Lepu Medical)','Occlutech','Cocoon Vascular Innovations','Other'];
+    const deviceTypes = ['PDA','ASD','VSD','Balloon','Sizing Balloon','Other'];
+    const deliverySizes = ['4F','5F','6F','7F','8F','9F','10F','12F','14F','16F'];
+    const introNeedleOptions = ['21 x 2.5CM','21 x 4CM','18 x 7CM','Other'];
+
+    const records = []; // store saved entries
+
+    // populate country and year selects
+    const countrySelect = document.getElementById('countrySelect');
+    countries.forEach(c=>{const o=document.createElement('option');o.text=c;o.value=c;countrySelect.add(o)});
+    const yearSelect = document.getElementById('yearSelect');
+    years.forEach(y=>{const o=document.createElement('option');o.text=y;o.value=y;yearSelect.add(o)});
+
+    // diagnosis checkboxes - 4 per row
+    const diagDiv = document.getElementById('diagnosis');
+    diagnosisOptions.forEach(opt=>{
+      const id='diag_'+opt.replace(/\s+/g,'_'); 
+      const wrapper=document.createElement('label'); 
+      wrapper.className='inline'; 
+      const cb=document.createElement('input'); 
+      cb.type='checkbox'; 
+      cb.value=opt; 
+      cb.id=id; 
+      wrapper.appendChild(cb); 
+      wrapper.appendChild(document.createTextNode(' '+opt)); 
+      if(opt==='Other'){ 
+        const other=document.createElement('input'); 
+        other.type='text'; 
+        other.placeholder='Specify other'; 
+        other.style.display='none'; 
+        other.id='diag_other_txt'; 
+        other.style.marginLeft='6px'; 
+        cb.addEventListener('change',()=>other.style.display=cb.checked?'inline-block':'none'); 
+        wrapper.appendChild(other);
+      } 
+      diagDiv.appendChild(wrapper); 
+    });
+
+    // procedures checkboxes - 4 per row
+    const procDiv = document.getElementById('procedures');
+    procedureOptions.forEach(opt=>{
+      const id='proc_'+opt.replace(/\s+/g,'_'); 
+      const wrapper=document.createElement('label'); 
+      wrapper.className='inline'; 
+      const cb=document.createElement('input'); 
+      cb.type='checkbox'; 
+      cb.value=opt; 
+      cb.id=id; 
+      wrapper.appendChild(cb); 
+      wrapper.appendChild(document.createTextNode(' '+opt)); 
+      if(opt==='Other'){ 
+        const other=document.createElement('input'); 
+        other.type='text'; 
+        other.placeholder='Specify other'; 
+        other.style.display='none'; 
+        other.id='proc_other_txt'; 
+        other.style.marginLeft='6px'; 
+        cb.addEventListener('change',()=>other.style.display=cb.checked?'inline-block':'none'); 
+        wrapper.appendChild(other);
+      } 
+      procDiv.appendChild(wrapper); 
+    });
+
+    // introducer needle checkboxes
+    const introNeedleRow = document.getElementById('introNeedleRow');
+    introNeedleOptions.forEach(opt=>{
+      const wrapper=document.createElement('label'); 
+      wrapper.className='inline'; 
+      const cb=document.createElement('input'); 
+      cb.type='checkbox'; 
+      cb.value=opt; 
+      wrapper.appendChild(cb); 
+      wrapper.appendChild(document.createTextNode(' '+opt)); 
+      if(opt==='Other'){ 
+        const other=document.createElement('input'); 
+        other.type='text'; 
+        other.placeholder='Specify other'; 
+        other.style.display='none'; 
+        other.style.marginLeft='6px'; 
+        cb.addEventListener('change',()=>other.style.display=cb.checked?'inline-block':'none'); 
+        wrapper.appendChild(other);
+      } 
+      introNeedleRow.appendChild(wrapper); 
+    });
+
+    // dynamic add device - single row layout
+    const devicesList = document.getElementById('devicesList');
+    document.getElementById('addDevice').addEventListener('click',addDeviceBlock);
+    function addDeviceBlock(pref={}){
+      const block=document.createElement('div'); 
+      block.className='device-block';
+      block.style.display = 'flex';
+      block.style.flexWrap = 'nowrap';
+      block.style.overflowX = 'auto';
+      block.style.gap = '8px';
+      
+      const vendorSel=document.createElement('select'); 
+      vendorSel.style.minWidth = '150px';
+      deviceVendors.forEach(v=>{const o=document.createElement('option');o.value=v;o.text=v;vendorSel.add(o)});
+      
+      const vendorOther=document.createElement('input'); 
+      vendorOther.type='text'; 
+      vendorOther.placeholder='Vendor other'; 
+      vendorOther.style.display='none'; 
+      vendorOther.style.minWidth = '120px';
+      vendorSel.addEventListener('change',()=>vendorOther.style.display=vendorSel.value==='Other'?'inline-block':'none');
+      
+      const typeSel=document.createElement('select'); 
+      typeSel.style.minWidth = '150px';
+      deviceTypes.forEach(t=>{const o=document.createElement('option');o.value=t;o.text=t;typeSel.add(o)});
+      
+      const typeOther=document.createElement('input'); 
+      typeOther.type='text'; 
+      typeOther.placeholder='Type other'; 
+      typeOther.style.display='none'; 
+      typeOther.style.minWidth = '120px';
+      typeSel.addEventListener('change',()=>typeOther.style.display=typeSel.value==='Other'?'inline-block':'none');
+      
+      const sizeInput=document.createElement('input'); 
+      sizeInput.type='text'; 
+      sizeInput.placeholder='Device Size';
+      sizeInput.style.minWidth = '100px';
+      
+      const remove=document.createElement('button'); 
+      remove.textContent='Remove'; 
+      remove.className='btn btn-danger btn-sm'; 
+      remove.addEventListener('click',()=>block.remove());
+      
+      block.appendChild(vendorSel); 
+      block.appendChild(vendorOther); 
+      block.appendChild(typeSel); 
+      block.appendChild(typeOther); 
+      block.appendChild(sizeInput); 
+      block.appendChild(remove);
+      devicesList.appendChild(block);
+    }
+
+    // delivery systems - single row layout
+    const deliveryList = document.getElementById('deliveryList');
+    document.getElementById('addDelivery').addEventListener('click',addDeliveryBlock);
+    function addDeliveryBlock(pref={}){
+      const block=document.createElement('div'); 
+      block.className='device-block';
+      block.style.display = 'flex';
+      block.style.flexWrap = 'nowrap';
+      block.style.overflowX = 'auto';
+      block.style.gap = '8px';
+      
+      const vendorSel=document.createElement('select'); 
+      vendorSel.style.minWidth = '150px';
+      deviceVendors.forEach(v=>{const o=document.createElement('option');o.value=v;o.text=v;vendorSel.add(o)});
+      
+      const vendorOther=document.createElement('input'); 
+      vendorOther.type='text'; 
+      vendorOther.placeholder='Vendor other'; 
+      vendorOther.style.display='none'; 
+      vendorOther.style.minWidth = '120px';
+      vendorSel.addEventListener('change',()=>vendorOther.style.display=vendorSel.value==='Other'?'inline-block':'none');
+      
+      const sizeSel=document.createElement('select'); 
+      sizeSel.style.minWidth = '80px';
+      deliverySizes.forEach(s=>{const o=document.createElement('option');o.value=s;o.text=s;sizeSel.add(o)});
+      
+      const remove=document.createElement('button'); 
+      remove.textContent='Remove'; 
+      remove.className='btn btn-danger btn-sm'; 
+      remove.addEventListener('click',()=>block.remove());
+      
+      block.appendChild(vendorSel); 
+      block.appendChild(vendorOther); 
+      block.appendChild(document.createTextNode(' Size: ')); 
+      block.appendChild(sizeSel); 
+      block.appendChild(remove);
+      deliveryList.appendChild(block);
+    }
+
+    // Calculate age from date of birth
+    document.getElementById('dob').addEventListener('change', calculateAge);
+    function calculateAge() {
+      const dob = new Date(document.getElementById('dob').value);
+      if (isNaN(dob.getTime())) return;
+      
+      const today = new Date();
+      let years = today.getFullYear() - dob.getFullYear();
+      let months = today.getMonth() - dob.getMonth();
+      let days = today.getDate() - dob.getDate();
+      
+      if (days < 0) {
+        months--;
+        // Days in previous month
+        const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += lastMonth.getDate();
+      }
+      
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+      
+      document.getElementById('ageDisplay').textContent = `Years: ${years}, Months: ${months}, Days: ${days}`;
+    }
+
+    // Toggle sub-options for introducer sheath
+    document.getElementById('introSheathCheck').addEventListener('change', function() {
+      document.getElementById('introSheathOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    // Toggle other option for introducer sheath
+    document.querySelector('#introSheathOptions input[value="Other"]').addEventListener('change', function() {
+      document.getElementById('introSheathOther').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Toggle options for different wire types
+    document.getElementById('ptcaWireCheck').addEventListener('change', function() {
+      document.getElementById('ptcaWireOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('copeMandrilCheck').addEventListener('change', function() {
+      document.getElementById('copeMandrilOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('regularWireCheck').addEventListener('change', function() {
+      document.getElementById('regularWireOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('stiffWireCheck').addEventListener('change', function() {
+      document.getElementById('stiffWireOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('superStiffWireCheck').addEventListener('change', function() {
+      document.getElementById('superStiffWireOptions').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Toggle other options for different wire types
+    document.querySelectorAll('input[value="Other"]').forEach(input => {
+      if (input.parentElement.parentElement.id === 'ptcaWireOptions') {
+        input.addEventListener('change', function() {
+          document.getElementById('ptcaWireOther').style.display = this.checked ? 'block' : 'none';
+        });
+      } else if (input.parentElement.parentElement.id === 'copeMandrilOptions') {
+        input.addEventListener('change', function() {
+          document.getElementById('copeMandrilOther').style.display = this.checked ? 'block' : 'none';
+        });
+      } else if (input.parentElement.parentElement.id === 'regularWireOptions') {
+        input.addEventListener('change', function() {
+          document.getElementById('regularWireOther').style.display = this.checked ? 'block' : 'none';
+        });
+      } else if (input.parentElement.parentElement.id === 'stiffWireOptions') {
+        input.addEventListener('change', function() {
+          document.getElementById('stiffWireOther').style.display = this.checked ? 'block' : 'none';
+        });
+      } else if (input.parentElement.parentElement.id === 'superStiffWireOptions') {
+        input.addEventListener('change', function() {
+          document.getElementById('superStiffWireOther').style.display = this.checked ? 'block' : 'none';
+        });
+      }
+    });
+
+    // Toggle catheter options
+    document.getElementById('catheterCheck').addEventListener('change', function() {
+      document.getElementById('catheterOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('pigtailCheck').addEventListener('change', function() {
+      document.getElementById('pigtailOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('mpaCheck').addEventListener('change', function() {
+      document.getElementById('mpaOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('jrCheck').addEventListener('change', function() {
+      document.getElementById('jrOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('guidingCathCheck').addEventListener('change', function() {
+      document.getElementById('guidingCathOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('balloonWedgeCheck').addEventListener('change', function() {
+      document.getElementById('balloonWedgeOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('bermanAngioCheck').addEventListener('change', function() {
+      document.getElementById('bermanAngioOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.querySelector('#catheterOptions input[value="Other"]').addEventListener('change', function() {
+      document.getElementById('catheterOther').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Toggle snare options
+    document.getElementById('snareChk').addEventListener('change', function() {
+      document.getElementById('snareOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('tripleLoopCheck').addEventListener('change', function() {
+      document.getElementById('tripleLoopOptions').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('gooseNeckCheck').addEventListener('change', function() {
+      document.getElementById('gooseNeckOptions').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // New Entry button - clear entire form
+    document.getElementById('btnNew').addEventListener('click',()=>{ 
+      clearForm(); 
+    });
+
+    // calculate BSA and BMI when height or weight change
+    document.getElementById('height').addEventListener('input',calcBodyMetrics);
+    document.getElementById('weight').addEventListener('input',calcBodyMetrics);
+    function calcBodyMetrics(){
+      const h = parseFloat(document.getElementById('height').value);
+      const w = parseFloat(document.getElementById('weight').value);
+      if(h>0 && w>0){ 
+        const bsa = Math.sqrt((h*w)/3600); 
+        document.getElementById('bsa').value = bsa.toFixed(3); 
+        const bmi = w / Math.pow(h/100,2); 
+        document.getElementById('bmi').value = bmi.toFixed(2);
+      } else {
+        document.getElementById('bsa').value='';
+        document.getElementById('bmi').value='';
+      }
+    }
+
+    // save entry
+    document.getElementById('saveBtn').addEventListener('click',()=>{
+      const entry = collectForm();
+      // if MRN exists, create new entry (don't override)
+      entry._savedAt = new Date().toISOString();
+      records.push(entry);
+      renderRecords(); 
+      renderStats();
+      alert('Entry saved. Total records: '+records.length);
+    });
+
+    function collectForm(){
+      const diag = Array.from(document.querySelectorAll('#diagnosis input[type=checkbox]:checked')).map(cb=>cb.value === 'Other' ? (document.getElementById('diag_other_txt').value||'Other') : cb.value);
+      const procs = Array.from(document.querySelectorAll('#procedures input[type=checkbox]:checked')).map(cb=>cb.value === 'Other' ? (document.getElementById('proc_other_txt').value||'Other') : cb.value);
+      
+      const devices = Array.from(devicesList.querySelectorAll('.device-block')).map(b=>{
+        const sel = b.querySelector('select'); const vendor = sel? sel.value: '';
+        const otherVendor = b.querySelector('input[type=text]')?.value || '';
+        const type = b.querySelectorAll('select')[1]?.value || '';
+        const typeOther = b.querySelectorAll('input[type=text]')[1]?.value || '';
+        const size = b.querySelectorAll('input[type=text]')[b.querySelectorAll('input[type=text]').length-1]?.value || '';
+        return {vendor: vendor==='Other'?otherVendor:vendor, type: type==='Other'?typeOther:type, size};
+      });
+      
+      const deliveries = Array.from(deliveryList.querySelectorAll('.device-block')).map(b=>({
+        vendor: b.querySelector('select').value,
+        size: b.querySelector('select:nth-of-type(2)').value, 
+        other: b.querySelector('input[type=text]')?.value||''
+      }));
+
+      // Get selected labs
+      const labs = [];
+      for(let i=1; i<=8; i++) {
+        if(document.getElementById('lab'+i).checked) {
+          labs.push('LAB'+i);
+        }
+      }
+
+      // Get operators
+      const operators = [];
+      for(let i=1; i<=4; i++) {
+        const op = document.getElementById('op'+i).value;
+        if(op) operators.push(op);
+      }
+
+      // Get introducer needles
+      const introNeedles = Array.from(document.querySelectorAll('#introNeedleRow input[type=checkbox]:checked')).map(cb => {
+        return cb.value === 'Other' ? (cb.nextElementSibling.nextElementSibling?.value || 'Other') : cb.value;
+      });
+
+      // Get introducer sheaths
+      const introSheaths = [];
+      if(document.getElementById('introSheathCheck').checked) {
+        introSheaths.push(...Array.from(document.querySelectorAll('#introSheathOptions input[type=checkbox]:checked')).map(cb => {
+          return cb.value === 'Other' ? (document.querySelector('#introSheathOther input')?.value || 'Other') : cb.value;
+        }));
+      }
+
+      // Get wires
+      const wires = [];
+      if (document.getElementById('ptcaWireCheck').checked) {
+        wires.push(...Array.from(document.querySelectorAll('#ptcaWireOptions input[type=checkbox]:checked')).map(cb => {
+          return cb.value === 'Other' ? (document.querySelector('#ptcaWireOther input')?.value || 'Other') : cb.value;
+        }));
+      }
+      
+      if (document.getElementById('copeMandrilCheck').checked) {
+        wires.push(...Array.from(document.querySelectorAll('#copeMandrilOptions input[type=checkbox]:checked')).map(cb => {
+          return cb.value === 'Other' ? (document.querySelector('#copeMandrilOther input')?.value || 'Other') : cb.value;
+        }));
+      }
+      
+      if (document.getElementById('regularWireCheck').checked) {
+        wires.push(...Array.from(document.querySelectorAll('#regularWireOptions input[type=checkbox]:checked')).map(cb => {
+          return cb.value === 'Other' ? (document.querySelector('#regularWireOther input')?.value || 'Other') : cb.value;
+        }));
+      }
+      
+      if (document.getElementById('stiffWireCheck').checked) {
+        wires.push(...Array.from(document.querySelectorAll('#stiffWireOptions input[type=checkbox]:checked')).map(cb => {
+          return cb.value === 'Other' ? (document.querySelector('#stiffWireOther input')?.value || 'Other') : cb.value;
+        }));
+      }
+      
+      if (document.getElementById('superStiffWireCheck').checked) {
+        wires.push(...Array.from(document.querySelectorAll('#superStiffWireOptions input[type=checkbox]:checked')).map(cb => {
+          return cb.value === 'Other' ? (document.querySelector('#superStiffWireOther input')?.value || 'Other') : cb.value;
+        }));
+      }
+
+      // Get catheters/balloons
+      const catheters = [];
+      if (document.getElementById('pigtailCheck').checked) {
+        const pigtailSizes = Array.from(document.querySelectorAll('#pigtailOptions input[type=checkbox]:checked')).map(cb => cb.value);
+        catheters.push(...pigtailSizes.map(size => `Pigtail ${size}`));
+      }
+      
+      if (document.getElementById('mpaCheck').checked) {
+        const mpaSizes = Array.from(document.querySelectorAll('#mpaOptions input[type=checkbox]:checked')).map(cb => cb.value);
+        catheters.push(...mpaSizes.map(size => `MPA ${size}`));
+      }
+      
+      if (document.getElementById('jrCheck').checked) {
+        const jrSizes = Array.from(document.querySelectorAll('#jrOptions input[type=checkbox]:checked')).map(cb => cb.value);
+        catheters.push(...jrSizes.map(size => `JR ${size}`));
+      }
+      
+      if (document.getElementById('guidingCathCheck').checked) {
+        const guidingCath = document.querySelector('#guidingCathOptions input')?.value || 'Guiding Catheter';
+        catheters.push(guidingCath);
+      }
+      
+      if (document.getElementById('balloonWedgeCheck').checked) {
+        const balloonSizes = Array.from(document.querySelectorAll('#balloonWedgeOptions input[type=checkbox]:checked')).map(cb => cb.value);
+        catheters.push(...balloonSizes.map(size => `Balloon Wedge ${size}`));
+      }
+      
+      if (document.getElementById('bermanAngioCheck').checked) {
+        const bermanSizes = Array.from(document.querySelectorAll('#bermanAngioOptions input[type=checkbox]:checked')).map(cb => cb.value);
+        catheters.push(...bermanSizes.map(size => `Berman Angio ${size}`));
+      }
+      
+      if (document.querySelector('#catheterOptions input[value="Other"]').checked) {
+        const otherCath = document.querySelector('#catheterOther input')?.value || 'Other Catheter';
+        catheters.push(otherCath);
+      }
+
+      // Get snare details
+      const snareDetails = [];
+      if (document.getElementById('snareChk').checked) {
+        if (document.getElementById('tripleLoopCheck').checked) {
+          const tripleLoopSize = document.querySelector('#tripleLoopOptions input')?.value || '';
+          snareDetails.push(`Triple Loop${tripleLoopSize ? ' ' + tripleLoopSize : ''}`);
+        }
+        
+        if (document.getElementById('gooseNeckCheck').checked) {
+          const gooseNeckSize = document.querySelector('#gooseNeckOptions input')?.value || '';
+          snareDetails.push(`Goose Neck${gooseNeckSize ? ' ' + gooseNeckSize : ''}`);
+        }
+      }
+
+      // Get additional supplies
+      const additionalSupplies = {
+        injectorQty: document.getElementById('injQty').value,
+        hpQty: document.getElementById('hpQty').value,
+        contrast: document.getElementById('contrast').value,
+        angioQty: document.getElementById('angioQty').value,
+        pacingQty: document.getElementById('pacingQty').value,
+        indefQty: document.getElementById('indefQty').value,
+        periQty: document.getElementById('periQty').value
+      };
+
+      // basic fields
+      const obj = {
+        mrn: document.getElementById('mrn').value.trim(),
+        name: document.getElementById('name').value.trim(),
+        dob: document.getElementById('dob').value,
+        age: document.getElementById('ageDisplay').textContent,
+        gender: document.getElementById('gender').value,
+        height: document.getElementById('height').value,
+        weight: document.getElementById('weight').value,
+        bsa: document.getElementById('bsa').value,
+        bmi: document.getElementById('bmi').value,
+        diagnosis: diag.join(', '),
+        procedures: procs.join(', '),
+        devices: devices.map(d => `${d.vendor} ${d.type} ${d.size}`).join('; '),
+        deliveries: deliveries.map(d => `${d.vendor} ${d.size} ${d.other}`).join('; '),
+        labs: labs.join(', '),
+        operators: operators.join(', '),
+        introNeedles: introNeedles.join(', '),
+        introSheaths: introSheaths.join(', '),
+        wires: wires.join(', '),
+        catheters: catheters.join(', '),
+        snare: snareDetails.join(', '),
+        additionalSupplies: `${additionalSupplies.injectorQty} injectors, ${additionalSupplies.hpQty} HP tubes, ${additionalSupplies.contrast} contrast, ${additionalSupplies.angioQty} angio packs, ${additionalSupplies.pacingQty} pacing leads, ${additionalSupplies.indefQty} indeflators, ${additionalSupplies.periQty} pericardiocentesis kits`,
+        year: document.getElementById('yearSelect').value,
+        country: document.getElementById('countrySelect').value,
+        savedAt: new Date().toLocaleString()
+      };
+      return obj;
+    }
+
+    function clearForm(){
+      // Clear all form fields
+      document.getElementById('mrn').value = '';
+      document.getElementById('name').value = '';
+      document.getElementById('dob').value = '';
+      document.getElementById('ageDisplay').textContent = 'Years: 0, Months: 0, Days: 0';
+      document.getElementById('gender').value = '';
+      document.getElementById('height').value = '';
+      document.getElementById('weight').value = '';
+      document.getElementById('bsa').value = '';
+      document.getElementById('bmi').value = '';
+      
+      // Clear checkboxes
+      document.querySelectorAll('#diagnosis input[type=checkbox], #procedures input[type=checkbox]').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      // Clear other text inputs for diagnosis and procedures
+      document.querySelectorAll('#diag_other_txt, #proc_other_txt').forEach(t => {
+        t.value = '';
+        t.style.display = 'none';
+      });
+      
+      // Clear devices and deliveries
+      devicesList.innerHTML = '';
+      deliveryList.innerHTML = '';
+      
+      // Clear labs checkboxes
+      document.querySelectorAll('#lab1, #lab2, #lab3, #lab4, #lab5, #lab6, #lab7, #lab8').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      // Clear operators
+      document.querySelectorAll('#op1, #op2, #op3, #op4').forEach(input => {
+        input.value = '';
+      });
+      
+      // Clear introducer needles
+      document.querySelectorAll('#introNeedleRow input[type=checkbox]').forEach(cb => {
+        cb.checked = false;
+        if (cb.value === 'Other') {
+          cb.nextElementSibling.nextElementSibling.value = '';
+          cb.nextElementSibling.nextElementSibling.style.display = 'none';
+        }
+      });
+      
+      // Clear introducer sheath
+      document.getElementById('introSheathCheck').checked = false;
+      document.getElementById('introSheathOptions').style.display = 'none';
+      document.querySelectorAll('#introSheathOptions input[type=checkbox]').forEach(cb => {
+        cb.checked = false;
+      });
+      document.querySelector('#introSheathOther input').value = '';
+      document.getElementById('introSheathOther').style.display = 'none';
+      
+      // Clear wires
+      document.getElementById('ptcaWireCheck').checked = false;
+      document.getElementById('copeMandrilCheck').checked = false;
+      document.getElementById('regularWireCheck').checked = false;
+      document.getElementById('stiffWireCheck').checked = false;
+      document.getElementById('superStiffWireCheck').checked = false;
+      
+      document.querySelectorAll('#ptcaWireOptions input[type=checkbox], #copeMandrilOptions input[type=checkbox], #regularWireOptions input[type=checkbox], #stiffWireOptions input[type=checkbox], #superStiffWireOptions input[type=checkbox]').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      document.querySelectorAll('#ptcaWireOther input, #copeMandrilOther input, #regularWireOther input, #stiffWireOther input, #superStiffWireOther input').forEach(input => {
+        input.value = '';
+        input.parentElement.style.display = 'none';
+      });
+      
+      document.querySelectorAll('#ptcaWireOptions, #copeMandrilOptions, #regularWireOptions, #stiffWireOptions, #superStiffWireOptions').forEach(el => {
+        el.style.display = 'none';
+      });
+      
+      // Clear catheters
+      document.getElementById('catheterCheck').checked = false;
+      document.getElementById('catheterOptions').style.display = 'none';
+      
+      document.getElementById('pigtailCheck').checked = false;
+      document.getElementById('mpaCheck').checked = false;
+      document.getElementById('jrCheck').checked = false;
+      document.getElementById('guidingCathCheck').checked = false;
+      document.getElementById('balloonWedgeCheck').checked = false;
+      document.getElementById('bermanAngioCheck').checked = false;
+      document.querySelector('#catheterOptions input[value="Other"]').checked = false;
+      
+      document.querySelectorAll('#pigtailOptions input[type=checkbox], #mpaOptions input[type=checkbox], #jrOptions input[type=checkbox], #balloonWedgeOptions input[type=checkbox], #bermanAngioOptions input[type=checkbox]').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      document.querySelector('#guidingCathOptions input').value = '';
+      document.querySelector('#catheterOther input').value = '';
+      
+      document.querySelectorAll('#pigtailOptions, #mpaOptions, #jrOptions, #guidingCathOptions, #balloonWedgeOptions, #bermanAngioOptions, #catheterOther').forEach(el => {
+        el.style.display = 'none';
+      });
+      
+      // Clear snare
+      document.getElementById('snareChk').checked = false;
+      document.getElementById('snareOptions').style.display = 'none';
+      
+      document.getElementById('tripleLoopCheck').checked = false;
+      document.getElementById('gooseNeckCheck').checked = false;
+      
+      document.querySelector('#tripleLoopOptions input').value = '';
+      document.querySelector('#gooseNeckOptions input').value = '';
+      
+      document.getElementById('tripleLoopOptions').style.display = 'none';
+      document.getElementById('gooseNeckOptions').style.display = 'none';
+      
+      // Clear additional supplies
+      document.getElementById('injQty').value = '0';
+      document.getElementById('hpQty').value = '0';
+      document.getElementById('contrast').value = '';
+      document.getElementById('angioQty').value = '0';
+      document.getElementById('pacingQty').value = '0';
+      document.getElementById('indefQty').value = '0';
+      document.getElementById('periQty').value = '0';
+    }
+
+    function renderRecords(){
+      const container = document.getElementById('recordsTable');
+      if(records.length === 0) {
+        container.innerHTML = '<p>No records saved yet.</p>';
+        return;
+      }
+      
+      let html = `
+        <table>
+          <thead>
+            <tr>
+              <th>MRN</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Diagnosis</th>
+              <th>Procedures</th>
+              <th>Devices</th>
+              <th>Delivery Systems</th>
+              <th>Cath Lab</th>
+              <th>Operators</th>
+              <th>Introducer Needles</th>
+              <th>Introducer Sheaths</th>
+              <th>Wires</th>
+              <th>Catheters/Balloons</th>
+              <th>Snare</th>
+              <th>Additional Supplies</th>
+              <th>Saved At</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+      
+      records.forEach(record => {
+        html += `
+          <tr>
+            <td>${record.mrn}</td>
+            <td>${record.name}</td>
+            <td>${record.age}</td>
+            <td>${record.gender}</td>
+            <td>${record.diagnosis}</td>
+            <td>${record.procedures}</td>
+            <td>${record.devices}</td>
+            <td>${record.deliveries}</td>
+            <td>${record.labs}</td>
+            <td>${record.operators}</td>
+            <td>${record.introNeedles}</td>
+            <td>${record.introSheaths}</td>
+            <td>${record.wires}</td>
+            <td>${record.catheters}</td>
+            <td>${record.snare}</td>
+            <td>${record.additionalSupplies}</td>
+            <td>${record.savedAt}</td>
+          </tr>
+        `;
+      });
+      
+      html += `
+          </tbody>
+        </table>
+      `;
+      
+      container.innerHTML = html;
+    }
+
+    function renderStats(){
+      const statsDiv = document.getElementById('statsArea');
+      if(records.length === 0) {
+        statsDiv.innerHTML = '<p>No statistics available yet.</p>';
+        return;
+      }
+      
+      let html = `
+        <h3>Summary Statistics</h3>
+        <table class="stats-table">
+          <tr>
+            <th>Total Records</th>
+            <td>${records.length}</td>
+          </tr>
+          <tr>
+            <th>Male Patients</th>
+            <td>${records.filter(r => r.gender === 'Male').length}</td>
+          </tr>
+          <tr>
+            <th>Female Patients</th>
+            <td>${records.filter(r => r.gender === 'Female').length}</td>
+          </tr>
+          <tr>
+            <th>Most Common Diagnosis</th>
+            <td>${findMostCommon(records.map(r => r.diagnosis))}</td>
+          </tr>
+          <tr>
+            <th>Most Common Procedure</th>
+            <td>${findMostCommon(records.map(r => r.procedures))}</td>
+          </tr>
+        </table>
+        
+        <h3 style="margin-top: 20px;">Recent Records</h3>
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>MRN</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Diagnosis</th>
+              <th>Procedure</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+      
+      // Show last 5 records
+      const recentRecords = records.slice(-5);
+      recentRecords.forEach(record => {
+        html += `
+          <tr>
+            <td>${record.mrn}</td>
+            <td>${record.name}</td>
+            <td>${record.age}</td>
+            <td>${record.gender}</td>
+            <td>${record.diagnosis.split(',')[0]}</td>
+            <td>${record.procedures.split(',')[0]}</td>
+          </tr>
+        `;
+      });
+      
+      html += `
+          </tbody>
+        </table>
+      `;
+      
+      statsDiv.innerHTML = html;
+    }
+    
+    function findMostCommon(items) {
+      if(items.length === 0) return 'N/A';
+      
+      const countMap = {};
+      items.forEach(item => {
+        if(item) {
+          // Split by comma and process each value
+          item.split(',').forEach(part => {
+            const trimmed = part.trim();
+            if(trimmed) {
+              countMap[trimmed] = (countMap[trimmed] || 0) + 1;
+            }
+          });
+        }
+      });
+      
+      let mostCommon = '';
+      let maxCount = 0;
+      
+      for(const [item, count] of Object.entries(countMap)) {
+        if(count > maxCount) {
+          mostCommon = item;
+          maxCount = count;
+        }
+      }
+      
+      return mostCommon || 'N/A';
+    }
+
+    // export to Excel
+    document.getElementById('exportXLS').addEventListener('click',()=>{
+      if(records.length === 0) {
+        alert('No records to export');
+        return;
+      }
+      
+      // Prepare data for Excel
+      const excelData = records.map(record => ({
+        'MRN': record.mrn,
+        'Name': record.name,
+        'Age': record.age,
+        'Gender': record.gender,
+        'Diagnosis': record.diagnosis,
+        'Procedures': record.procedures,
+        'Devices': record.devices,
+        'Delivery Systems': record.deliveries,
+        'Cath Lab': record.labs,
+        'Operators': record.operators,
+        'Introducer Needles': record.introNeedles,
+        'Introducer Sheaths': record.introSheaths,
+        'Wires': record.wires,
+        'Catheters/Balloons': record.catheters,
+        'Snare': record.snare,
+        'Additional Supplies': record.additionalSupplies,
+        'Saved At': record.savedAt,
+        'Year': record.year,
+        'Country': record.country
+      }));
+      
+      // Create worksheet
+      const ws = XLSX.utils.json_to_sheet(excelData);
+      
+      // Create workbook
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Patient Records");
+      
+      // Generate Excel file and trigger download
+      const date = new Date().toISOString().slice(0, 10);
+      XLSX.writeFile(wb, `Qatar_Charity_Records_${date}.xlsx`);
+    });
+
+    // add a couple of device and delivery blocks by default for demo
+    addDeviceBlock(); 
+    addDeliveryBlock();
+
+    // initialize
+    renderRecords();
+    renderStats();
+  </script>
+</body>
+</html>
