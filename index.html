@@ -25,7 +25,64 @@
       box-sizing: border-box;
     }
     
-    body {
+    body
+<h1>Welcome to Pediatric Mission App</h1>
+
+  <!-- 👇 Put the form code here -->
+  <form id="myForm">
+    <input type="text" id="mrn" placeholder="MRN" required><br>
+    <input type="text" id="name" placeholder="Name" required><br>
+    <input type="number" id="age" placeholder="Age"><br>
+    <input type="text" id="gender" placeholder="Gender"><br>
+    <input type="text" id="diagnosis" placeholder="Diagnosis"><br>
+    <input type="text" id="procedures" placeholder="Procedures"><br>
+    <input type="text" id="devices" placeholder="Devices"><br>
+    <input type="text" id="deliverySystems" placeholder="Delivery Systems"><br>
+    <input type="text" id="cathLab" placeholder="Cath Lab"><br>
+    <input type="text" id="operators" placeholder="Operators"><br>
+    <input type="text" id="introducerNeedles" placeholder="Introducer Needles"><br>
+    <input type="text" id="introducerSheaths" placeholder="Introducer Sheaths"><br>
+    <input type="text" id="wires" placeholder="Wires"><br>
+    <input type="text" id="cathetersBalloons" placeholder="Catheters/Balloons"><br>
+    <input type="text" id="snare" placeholder="Snare"><br>
+    <input type="text" id="additionalSupplies" placeholder="Additional Supplies"><br>
+    <input type="number" id="year" placeholder="Year"><br>
+    <input type="text" id="country" placeholder="Country"><br>
+    <button type="submit">Save Record</button>
+  </form>
+
+  <!-- 👇 Paste the script just before </body> -->
+  <script>
+document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    fetch("https://script.google.com/macros/s/AKfycbxYP_ILNAynxkpGOtCiOrgdpYsbLLQnF_htKRJUvhx76rW5H8tObxstOSpibaSEJY-O_Q/exec", {
+        method: "POST",
+        body: JSON.stringify({
+            mrn: document.getElementById("mrn").value,
+            name: document.getElementById("name").value,
+            age: document.getElementById("age").value,
+            gender: document.getElementById("gender").value,
+            diagnosis: document.getElementById("diagnosis").value,
+            procedures: document.getElementById("procedures").value,
+            devices: document.getElementById("devices").value,
+            deliverySystems: document.getElementById("deliverySystems").value,
+            cathLab: document.getElementById("cathLab").value,
+            operators: document.getElementById("operators").value,
+            introducerNeedles: document.getElementById("introducerNeedles").value,
+            introducerSheaths: document.getElementById("introducerSheaths").value,
+            wires: document.getElementById("wires").value,
+            cathetersBalloons: document.getElementById("cathetersBalloons").value,
+            snare: document.getElementById("snare").value,
+            additionalSupplies: document.getElementById("additionalSupplies").value,
+            year: document.getElementById("year").value,
+            country: document.getElementById("country").value
+        })
+    })
+    .then(res => res.text())
+    .then(data => alert("Saved successfully!"))
+    .catch(err => alert("Error: " + err));
+});
+</script> {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 20px;
