@@ -26,63 +26,136 @@
     }
     
     body
-<h1>Welcome to Pediatric Mission App</h1>
+ <h1>Pediatric Mission Form</h1>
 
-  <!-- 👇 Put the form code here -->
   <form id="myForm">
-    <input type="text" id="mrn" placeholder="MRN" required><br>
-    <input type="text" id="name" placeholder="Name" required><br>
-    <input type="number" id="age" placeholder="Age"><br>
-    <input type="text" id="gender" placeholder="Gender"><br>
-    <input type="text" id="diagnosis" placeholder="Diagnosis"><br>
-    <input type="text" id="procedures" placeholder="Procedures"><br>
-    <input type="text" id="devices" placeholder="Devices"><br>
-    <input type="text" id="deliverySystems" placeholder="Delivery Systems"><br>
-    <input type="text" id="cathLab" placeholder="Cath Lab"><br>
-    <input type="text" id="operators" placeholder="Operators"><br>
-    <input type="text" id="introducerNeedles" placeholder="Introducer Needles"><br>
-    <input type="text" id="introducerSheaths" placeholder="Introducer Sheaths"><br>
-    <input type="text" id="wires" placeholder="Wires"><br>
-    <input type="text" id="cathetersBalloons" placeholder="Catheters/Balloons"><br>
-    <input type="text" id="snare" placeholder="Snare"><br>
-    <input type="text" id="additionalSupplies" placeholder="Additional Supplies"><br>
-    <input type="number" id="year" placeholder="Year"><br>
-    <input type="text" id="country" placeholder="Country"><br>
+    <label>MRN: <input type="text" id="mrn" required></label><br>
+    <label>Name: <input type="text" id="name" required></label><br>
+    <label>Age: <input type="number" id="age"></label><br>
+    <label>Gender: <input type="text" id="gender"></label><br>
+    <label>Diagnosis: <input type="text" id="diagnosis"></label><br>
+    <label>Procedures: <input type="text" id="procedures"></label><br>
+    <label>Devices: <input type="text" id="devices"></label><br>
+    <label>Delivery Systems: <input type="text" id="deliverySystems"></label><br>
+    <label>Cath Lab: <input type="text" id="cathLab"></label><br>
+    <label>Operators: <input type="text" id="operators"></label><br>
+    <label>Introducer Needles: <input type="text" id="introducerNeedles"></label><br>
+    <label>Introducer Sheaths: <input type="text" id="introducerSheaths"></label><br>
+    <label>Wires: <input type="text" id="wires"></label><br>
+    <label>Catheters/Balloons: <input type="text" id="cathetersBalloons"></label><br>
+    <label>Snare: <input type="text" id="snare"></label><br>
+    <label>Additional Supplies: <input type="text" id="additionalSupplies"></label><br>
+    <label>Year: <input type="text" id="year"></label><br>
+    <label>Country: <input type="text" id="country"></label><br>
+
     <button type="submit">Save Record</button>
   </form>
 
-  <!-- 👇 Paste the script just before </body> -->
+  <h2>Saved Records</h2>
+  <table border="1" id="recordsTable">
+    <thead>
+      <tr>
+        <th>MRN</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Diagnosis</th>
+        <th>Procedures</th>
+        <th>Devices</th>
+        <th>Delivery Systems</th>
+        <th>Cath Lab</th>
+        <th>Operators</th>
+        <th>Introducer Needles</th>
+        <th>Introducer Sheaths</th>
+        <th>Wires</th>
+        <th>Catheters/Balloons</th>
+        <th>Snare</th>
+        <th>Additional Supplies</th>
+        <th>Saved At</th>
+        <th>Year</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
   <script>
-document.getElementById("myForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    fetch("https://script.google.com/macros/s/AKfycbxYP_ILNAynxkpGOtCiOrgdpYsbLLQnF_htKRJUvhx76rW5H8tObxstOSpibaSEJY-O_Q/exec", {
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwBCBZruCbUpF0x-JXDycL9JRPZ9LBZekpFt0twYzT7cgy3LS5Pary1hRa9RFyh0L1yQg/exec";
+
+    // Save data to Google Sheets
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      fetch(scriptURL, {
         method: "POST",
         body: JSON.stringify({
-            mrn: document.getElementById("mrn").value,
-            name: document.getElementById("name").value,
-            age: document.getElementById("age").value,
-            gender: document.getElementById("gender").value,
-            diagnosis: document.getElementById("diagnosis").value,
-            procedures: document.getElementById("procedures").value,
-            devices: document.getElementById("devices").value,
-            deliverySystems: document.getElementById("deliverySystems").value,
-            cathLab: document.getElementById("cathLab").value,
-            operators: document.getElementById("operators").value,
-            introducerNeedles: document.getElementById("introducerNeedles").value,
-            introducerSheaths: document.getElementById("introducerSheaths").value,
-            wires: document.getElementById("wires").value,
-            cathetersBalloons: document.getElementById("cathetersBalloons").value,
-            snare: document.getElementById("snare").value,
-            additionalSupplies: document.getElementById("additionalSupplies").value,
-            year: document.getElementById("year").value,
-            country: document.getElementById("country").value
+          mrn: document.getElementById("mrn").value,
+          name: document.getElementById("name").value,
+          age: document.getElementById("age").value,
+          gender: document.getElementById("gender").value,
+          diagnosis: document.getElementById("diagnosis").value,
+          procedures: document.getElementById("procedures").value,
+          devices: document.getElementById("devices").value,
+          deliverySystems: document.getElementById("deliverySystems").value,
+          cathLab: document.getElementById("cathLab").value,
+          operators: document.getElementById("operators").value,
+          introducerNeedles: document.getElementById("introducerNeedles").value,
+          introducerSheaths: document.getElementById("introducerSheaths").value,
+          wires: document.getElementById("wires").value,
+          cathetersBalloons: document.getElementById("cathetersBalloons").value,
+          snare: document.getElementById("snare").value,
+          additionalSupplies: document.getElementById("additionalSupplies").value,
+          year: document.getElementById("year").value,
+          country: document.getElementById("country").value
         })
-    })
-    .then(res => res.text())
-    .then(data => alert("Saved successfully!"))
-    .catch(err => alert("Error: " + err));
-});
-</script> {
+      })
+      .then(res => res.text())
+      .then(data => {
+        alert("Saved successfully!");
+        loadRecords(); // reload table
+        document.getElementById("myForm").reset();
+      })
+      .catch(err => alert("Error: " + err));
+    });
+
+    // Load data from Google Sheets
+    function loadRecords() {
+      fetch(scriptURL)
+        .then(res => res.json())
+        .then(data => {
+          let tableBody = document.querySelector("#recordsTable tbody");
+          tableBody.innerHTML = "";
+          data.forEach(row => {
+            let tr = "<tr>";
+            tr += `<td>${row["MRN"] || ""}</td>`;
+            tr += `<td>${row["Name"] || ""}</td>`;
+            tr += `<td>${row["Age"] || ""}</td>`;
+            tr += `<td>${row["Gender"] || ""}</td>`;
+            tr += `<td>${row["Diagnosis"] || ""}</td>`;
+            tr += `<td>${row["Procedures"] || ""}</td>`;
+            tr += `<td>${row["Devices"] || ""}</td>`;
+            tr += `<td>${row["Delivery Systems"] || ""}</td>`;
+            tr += `<td>${row["Cath Lab"] || ""}</td>`;
+            tr += `<td>${row["Operators"] || ""}</td>`;
+            tr += `<td>${row["Introducer Needles"] || ""}</td>`;
+            tr += `<td>${row["Introducer Sheaths"] || ""}</td>`;
+            tr += `<td>${row["Wires"] || ""}</td>`;
+            tr += `<td>${row["Catheters/Balloons"] || ""}</td>`;
+            tr += `<td>${row["Snare"] || ""}</td>`;
+            tr += `<td>${row["Additional Supplies"] || ""}</td>`;
+            tr += `<td>${row["Saved At"] || ""}</td>`;
+            tr += `<td>${row["Year"] || ""}</td>`;
+            tr += `<td>${row["Country"] || ""}</td>`;
+            tr += "</tr>";
+            tableBody.innerHTML += tr;
+          });
+        })
+        .catch(err => console.error("Error loading data", err));
+    }
+
+    // Load records on page load
+    window.onload = loadRecords;
+  </script>
+{
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 20px;
