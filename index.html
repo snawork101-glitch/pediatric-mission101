@@ -80,80 +80,121 @@
   </table>
 
   <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwTCeVhm8a2UD_eqJjDhTiZCNKq5LYOQgZj9sxeHdpftobPd5gJ3nKigD22hXcVIHGzkg/exec";
-    // Save data to Google Sheets
+	const scriptURL = "https://script.google.com/macros/s/AKfycbxoRw2znuoKTUCFK-k9-zt8PcptxRRvbKtznnRiatYA_AdIzKXEAXeIRmIaKTGxQP30vA/exec";
+
+    // Helper to get checked values from a container
+    function getCheckedValues(containerId) {
+        return Array.from(document.querySelectorAll(`#${containerId} input[type="checkbox"]:checked`))
+            .map(cb => cb.value)
+            .filter(v => v);
+    }
+    
+    // Helper to get dynamic block data
+    function getDynamicBlocks(listId) {
+      const blocks = document.querySelectorAll(`#${listId} .device-block`);
+      const data = [];
+      blocks.forEach(block => {
+        const vendor = block.querySelector('select').value;
+        const vendorOther = block.querySelector('input[placeholder="Vendor other"]').value;
+        const type = block.querySelector('select').value;
+        const typeOther = block.querySelector('input[placeholder="Type other"]').value;
+        const size = block.querySelector('input[placeholder="Device Size"]').value;
+        
+        data.push({
+          vendor: vendor === 'Other' ? vendorOther : vendor,
+          type: type === 'Other' ? typeOther : type,
+          size: size
+        });
+      });
+      return data;
+    }
+
+    // Helper to get dynamic delivery systems
+    function getDeliveryBlocks(listId) {
+      const blocks = document.querySelectorAll(`#${listId} .device-block`);
+      const data = [];
+      blocks.forEach(block => {
+        const vendor = block.querySelector('select').value;
+        const vendorOther = block.querySelector('input[placeholder="Vendor other"]').value;
+        const size = block.querySelector('select').value;
+        
+        data.push({
+          vendor: vendor === 'Other' ? vendorOther : vendor,
+          size: size
+        });
+      });
+      return data;
+    }
+
+    // Handle form submission
     document.getElementById("myForm").addEventListener("submit", function(e) {
       e.preventDefault();
+      
+      const formData = {
+        mrn: document.getElementById("mrn").value,
+        name: document.getElementById("name").value,
+        dob: document.getElementById("dob").value,
+        height: document.getElementById("height").value,
+        weight: document.getElementById("weight").value,
+        gender: document.getElementById("gender").value,
+        diagnosis: getCheckedValues('diagnosis').join(", "),
+        procedures: getCheckedValues('procedures').join(", "),
+        devices: getDynamicBlocks('devicesList'),
+        deliverySystems: getDeliveryBlocks('deliveryList'),
+        cathLabs: getCheckedValues('cathLabs').join(", "), // New ID based on the HTML provided
+        operators: [
+          document.getElementById("op1").value,
+          document.getElementById("op2").value,
+          document.getElementById("op3").value,
+          document.getElementById("op4").value
+        ].filter(Boolean).join(", "),
+        introducerNeedles: getCheckedValues('introNeedleRow').join(", "),
+        introducerSheaths: getCheckedValues('introSheathOptions').join(", "),
+        wires: [
+          getCheckedValues('ptcaWireOptions'),
+          getCheckedValues('copeMandrilOptions'),
+          getCheckedValues('regularWireOptions'),
+          getCheckedValues('stiftWireOptions'),
+          getCheckedValues('superStiffWireOptions')
+        ].flat().filter(Boolean).join(", "),
+        cathetersBalloons: [
+          getCheckedValues('catheterOptions'),
+          getCheckedValues('pigtailOptions'),
+          getCheckedValues('mpaOptions'),
+          getCheckedValues('jrOptions'),
+          getCheckedValues('balloonWedgeOptions'),
+          getCheckedValues('bermanAngioOptions')
+        ].flat().filter(Boolean).join(", "),
+        snare: [
+          getCheckedValues('snareOptions'),
+          getCheckedValues('tripleLoopOptions'),
+          getCheckedValues('gooseNeckOptions')
+        ].flat().filter(Boolean).join(", "),
+        additionalSupplies: {
+          injQty: document.getElementById("injQty").value,
+          hpQty: document.getElementById("hpQty").value,
+          contrast: document.getElementById("contrast").value,
+          angioQty: document.getElementById("angioQty").value,
+          pacingQty: document.getElementById("pacingQty").value,
+          indefQty: document.getElementById("indefQty").value,
+          periQty: document.getElementById("periQty").value
+        },
+        year: document.getElementById("yearSelect").value,
+        country: document.getElementById("countrySelect").value
+      };
+
       fetch(scriptURL, {
         method: "POST",
-        body: JSON.stringify({
-          mrn: document.getElementById("mrn").value,
-          name: document.getElementById("name").value,
-          age: document.getElementById("age").value,
-          gender: document.getElementById("gender").value,
-          diagnosis: document.getElementById("diagnosis").value,
-          procedures: document.getElementById("procedures").value,
-          devices: document.getElementById("devices").value,
-          deliverySystems: document.getElementById("deliverySystems").value,
-          cathLab: document.getElementById("cathLab").value,
-          operators: document.getElementById("operators").value,
-          introducerNeedles: document.getElementById("introducerNeedles").value,
-          introducerSheaths: document.getElementById("introducerSheaths").value,
-          wires: document.getElementById("wires").value,
-          cathetersBalloons: document.getElementById("cathetersBalloons").value,
-          snare: document.getElementById("snare").value,
-          additionalSupplies: document.getElementById("additionalSupplies").value,
-          year: document.getElementById("year").value,
-          country: document.getElementById("country").value
-        })
+        body: JSON.stringify(formData)
       })
       .then(res => res.text())
       .then(data => {
         alert("Saved successfully!");
-        loadRecords(); // reload table
-        document.getElementById("myForm").reset();
+        // The rest of your code for reloading the table and resetting the form
       })
       .catch(err => alert("Error: " + err));
     });
-
-    // Load data from Google Sheets
-    function loadRecords() {
-      fetch(scriptURL)
-        .then(res => res.json())
-        .then(data => {
-          let tableBody = document.querySelector("#recordsTable tbody");
-          tableBody.innerHTML = "";
-          data.forEach(row => {
-            let tr = "<tr>";
-            tr += `<td>${row["MRN"] || ""}</td>`;
-            tr += `<td>${row["Name"] || ""}</td>`;
-            tr += `<td>${row["Age"] || ""}</td>`;
-            tr += `<td>${row["Gender"] || ""}</td>`;
-            tr += `<td>${row["Diagnosis"] || ""}</td>`;
-            tr += `<td>${row["Procedures"] || ""}</td>`;
-            tr += `<td>${row["Devices"] || ""}</td>`;
-            tr += `<td>${row["Delivery Systems"] || ""}</td>`;
-            tr += `<td>${row["Cath Lab"] || ""}</td>`;
-            tr += `<td>${row["Operators"] || ""}</td>`;
-            tr += `<td>${row["Introducer Needles"] || ""}</td>`;
-            tr += `<td>${row["Introducer Sheaths"] || ""}</td>`;
-            tr += `<td>${row["Wires"] || ""}</td>`;
-            tr += `<td>${row["Catheters/Balloons"] || ""}</td>`;
-            tr += `<td>${row["Snare"] || ""}</td>`;
-            tr += `<td>${row["Additional Supplies"] || ""}</td>`;
-            tr += `<td>${row["Saved At"] || ""}</td>`;
-            tr += `<td>${row["Year"] || ""}</td>`;
-            tr += `<td>${row["Country"] || ""}</td>`;
-            tr += "</tr>";
-            tableBody.innerHTML += tr;
-          });
-        })
-        .catch(err => console.error("Error loading data", err));
-    }
-
-    // Load records on page load
-    window.onload = loadRecords;
-  </script>
+</script>
 {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
